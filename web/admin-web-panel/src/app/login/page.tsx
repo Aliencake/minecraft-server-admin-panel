@@ -20,6 +20,7 @@ import { TypeAnimation } from "react-type-animation";
 import { Loader2 } from "lucide-react";
 import { loginSchema, LoginSchema } from "@/schemas/login-shema";
 import { toast } from "sonner";
+import Scene from "@/components/creeper-scene";
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -75,16 +76,10 @@ export default function Login() {
   }, [searchParams]);
 
   return (
-    <div className="flex h-dvh flex-col items-center gap-20 align-middle">
-      <TypeAnimation
-        sequence={["Minecraft - це життя!"]}
-        wrapper="span"
-        speed={30}
-        cursor={false}
-        repeat={1}
-        style={{ fontSize: "2em" }}
-        className="mt-20 flex min-h-20"
-      />
+    <div className="flex h-dvh flex-col items-center gap-15 align-middle">
+      <div className="mt-10">
+        <Scene/>
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
