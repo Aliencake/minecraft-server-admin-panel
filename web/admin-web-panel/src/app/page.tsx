@@ -1,12 +1,13 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/admin/login");
+      router.push("/login");
     },
   });
 
