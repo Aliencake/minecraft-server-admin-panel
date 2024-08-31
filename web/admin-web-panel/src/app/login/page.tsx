@@ -41,37 +41,41 @@ export default function Login() {
   async function onSubmit(values: LoginSchema) {
     setLoading(true);
 
-      const result =   await signIn("credentials", {
-         redirect: false,
-         username: values.username,
-         password: values.password,
-       });
+    const result = await signIn("credentials", {
+      redirect: false,
+      username: values.username,
+      password: values.password,
+    });
 
-      if (result?.ok) {
-          setExplosionAnimate(true)
+    if (result?.ok) {
+      setExplosionAnimate(true);
 
-          setTimeout(() => {
-              router.push("/");
-          }, 2500);
+      setTimeout(() => {
+        router.push("/");
+      }, 2500);
 
-          setLoading(false);
-      } else {
-          const errorMessage = result?.error === "CredentialsSignin" ? "Неправильний пароль" : "Unknown error";
-          toast.error(errorMessage);
-          setLoading(false);
-      }
-      }
-
+      setLoading(false);
+    } else {
+      const errorMessage =
+        result?.error === "CredentialsSignin"
+          ? "Неправильний пароль"
+          : "Unknown error";
+      toast.error(errorMessage);
+      setLoading(false);
+    }
+  }
 
   if (session && !explosionAnimate) {
     router.push("/");
   }
 
   return (
-    <div className="flex h-dvh flex-col items-center gap-15 align-middle">
-        {explosionAnimate && <ExplosionGif className="absolute h-dvh w-dvw aspect-auto"/>}
+    <div className="gap-15 flex h-dvh flex-col items-center align-middle">
+      {explosionAnimate && (
+        <ExplosionGif className="absolute aspect-auto h-dvh w-dvw" />
+      )}
       <div className="mt-10">
-        <CreeperScene/>
+        <CreeperScene />
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
