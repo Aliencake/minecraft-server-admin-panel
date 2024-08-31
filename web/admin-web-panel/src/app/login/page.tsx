@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { signIn, useSession } from "next-auth/react";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -14,19 +13,19 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { TypeAnimation } from "react-type-animation";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { loginSchema, LoginSchema } from "@/schemas/login-shema";
 import { toast } from "sonner";
+import CreeperScene from "@/components/creeper-scene";
+import ExplosionGif from "@/components/creeper-explosion";
 
 export default function Login() {
   const { data: session, status } = useSession();
 
   const [loading, setLoading] = useState(false);
-
-  const searchParams = useSearchParams();
+  const [explosionAnimate, setExplosionAnimate] = useState(false);
 
   const router = useRouter();
 
@@ -39,52 +38,41 @@ export default function Login() {
     disabled: loading,
   });
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
+  async function onSubmit(values: LoginSchema) {
     setLoading(true);
-    try {
-      await signIn("credentials", {
-        username: values.username,
-        password: values.password,
-        callbackUrl: `/`,
-      });
-    } catch (error) {
-      // Handle the error here
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
 
-  if (session) {
+      const result =   await signIn("credentials", {
+         redirect: false,
+         username: values.username,
+         password: values.password,
+       });
+
+      if (result?.ok) {
+          setExplosionAnimate(true)
+
+          setTimeout(() => {
+              router.push("/");
+          }, 2500);
+
+          setLoading(false);
+      } else {
+          const errorMessage = result?.error === "CredentialsSignin" ? "Неправильний пароль" : "Unknown error";
+          toast.error(errorMessage);
+          setLoading(false);
+      }
+      }
+
+
+  if (session && !explosionAnimate) {
     router.push("/");
   }
 
-  useEffect(() => {
-    const err = searchParams.get("error");
-
-    if (err) {
-      const errorMessage =
-        err === "CredentialsSignin" ? "Неправильний пароль" : "Unknown error";
-
-      new Promise(() =>
-        setTimeout(() => {
-          toast.error(errorMessage);
-        }, 10)
-      );
-    }
-  }, [searchParams]);
-
   return (
-    <div className="flex h-dvh flex-col items-center gap-20 align-middle">
-      <TypeAnimation
-        sequence={["Minecraft - це життя!"]}
-        wrapper="span"
-        speed={30}
-        cursor={false}
-        repeat={1}
-        style={{ fontSize: "2em" }}
-        className="mt-20 flex min-h-20"
-      />
+    <div className="flex h-dvh flex-col items-center gap-15 align-middle">
+        {explosionAnimate && <ExplosionGif className="absolute h-dvh w-dvw aspect-auto"/>}
+      <div className="mt-10">
+        <CreeperScene/>
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
