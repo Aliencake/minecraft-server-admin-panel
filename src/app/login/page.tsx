@@ -1,8 +1,16 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { signIn, useSession } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { signIn, useSession } from "next-auth/react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import ExplosionGif from "@/components/creeper-explosion";
+import CreeperScene from "@/components/creeper-scene";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,15 +19,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { Loader2 } from "lucide-react";
-import { loginSchema, LoginSchema } from "@/schemas/login-shema";
-import { toast } from "sonner";
-import CreeperScene from "@/components/creeper-scene";
-import ExplosionGif from "@/components/creeper-explosion";
+import { LoginSchema, loginSchema } from "@/schemas/login-shema";
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -118,7 +119,7 @@ export default function Login() {
           />
           <Button className="w-60 rounded-xl" type="submit" disabled={loading}>
             {loading ? (
-              <Loader2 className="ml-2 h-4 w-4 animate-spin" />
+              <Loader2 className="ml-2 size-4 animate-spin" />
             ) : (
               <>Увійти</>
             )}

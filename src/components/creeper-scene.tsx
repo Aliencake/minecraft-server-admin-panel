@@ -1,6 +1,6 @@
-import React from "react";
-import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import React from "react";
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url);
