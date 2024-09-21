@@ -1,14 +1,16 @@
 import { type Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import Providers from "@/components/providers";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
-const fontSans = FontSans({
+const roboto = Roboto({
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -25,8 +27,8 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-background font-roboto antialiased",
+          roboto.variable
         )}
       >
         <Providers>{children}</Providers>
