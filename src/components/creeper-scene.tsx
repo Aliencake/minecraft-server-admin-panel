@@ -4,6 +4,7 @@ import React from "react";
 
 function Model({ url }: { url: string }) {
   const { scene } = useGLTF(url);
+
   return <primitive object={scene} scale={1} />;
 }
 

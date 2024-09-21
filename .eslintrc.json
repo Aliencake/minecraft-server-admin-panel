@@ -1,6 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["tailwindcss", "prettier", "import", "@typescript-eslint"],
+  "plugins": [
+    "unused-imports",
+    "tailwindcss",
+    "prettier",
+    "import",
+    "@typescript-eslint"
+  ],
   "extends": [
     "next/core-web-vitals",
     "prettier",
@@ -10,13 +16,17 @@
   ],
   "settings": {
     "import/resolver": {
-      "typescript": {},
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      "typescript": true,
+      "node": true
     }
   },
   "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "if", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "return" }
+    ],
     "prettier/prettier": ["error"],
     "import/no-named-as-default-member": ["off"],
     "import/order": [
