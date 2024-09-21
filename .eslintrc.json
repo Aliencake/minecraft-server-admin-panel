@@ -5,9 +5,11 @@
     "tailwindcss",
     "prettier",
     "import",
+    "@tanstack/query",
     "@typescript-eslint"
   ],
   "extends": [
+    "plugin:@tanstack/eslint-plugin-query/recommended",
     "next/core-web-vitals",
     "prettier",
     "plugin:tailwindcss/recommended",

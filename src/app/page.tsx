@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-import Loading from "@/components/loading";
+import Loading from "@/components/custom/loading";
 
 export default function Home() {
   const router = useRouter();

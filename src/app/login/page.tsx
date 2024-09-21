@@ -8,8 +8,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import ExplosionGif from "@/components/creeper-explosion";
-import CreeperScene from "@/components/creeper-scene";
+import ExplosionGif from "@/components/custom/creeper-explosion";
+import CreeperScene from "@/components/custom/creeper-scene";
 import { Button } from "@/components/ui/button";
 import {
   Form,

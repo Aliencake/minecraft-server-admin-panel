@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
+import Providers from "@/components/providers";
 import "./globals.css";
-import Provider from "@/components/SessionProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { cn } from "@/lib/utils";
 
@@ -22,18 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <Provider>
-      <html lang="en">
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
-          )}
-        >
-          {children}
-        </body>
-        <Toaster richColors />
-      </html>
-    </Provider>
+    <html lang="en">
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable
+        )}
+      >
+        <Providers>{children}</Providers>
+      </body>
+      <Toaster richColors />
+    </html>
   );
 }
