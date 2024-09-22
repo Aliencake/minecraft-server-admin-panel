@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Routes } from "@/lib/constants";
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -51,7 +52,7 @@ export default function Login() {
       setExplosionAnimate(true);
 
       setTimeout(() => {
-        router.push("/");
+        router.push(Routes.Home);
       }, 2500);
 
       setLoading(false);
@@ -66,7 +67,7 @@ export default function Login() {
   }
 
   if (session && !explosionAnimate) {
-    router.push("/");
+    router.push(Routes.Home);
   }
 
   return (

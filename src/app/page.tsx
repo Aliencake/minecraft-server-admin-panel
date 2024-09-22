@@ -2,17 +2,15 @@
 
 import { useQuery } from "@tanstack/react-query";
 
-import { Loading } from "@/components/custom";
+import { QUERY_KEYS } from "@/lib/constants";
 import { RconServiceService } from "@/lib/services";
 
 export default function Home() {
-  const { isLoading, data } = useQuery({
-    queryKey: ["players"],
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.playersList],
     queryFn: () => RconServiceService.list(),
     refetchInterval: 10000,
   });
-
-  if (isLoading) return <Loading />;
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-y-4 p-24">
