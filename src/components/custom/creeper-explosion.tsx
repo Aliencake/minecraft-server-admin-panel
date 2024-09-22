@@ -13,6 +13,7 @@ export const ExplosionGif = (props: ExplosionGifProps) => {
         alt="explosion gif"
         fill={true}
         unoptimized={true}
+        className="hidden sm:visible"
       />
     </div>
   );
