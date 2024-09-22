@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 interface LoadingProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function Loading(props: LoadingProps) {
+export const Loading = (props: LoadingProps) => {
   const { className } = props;
 
   return (
@@ -20,4 +20,4 @@ export default function Loading(props: LoadingProps) {
       />
     </div>
   );
-}
+};

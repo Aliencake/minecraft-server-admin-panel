@@ -1,23 +1,27 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
 
-import Loading from "@/components/custom/loading";
+import { useQuery } from "@tanstack/react-query";
+
+import { Loading } from "@/components/custom";
+import { RconServiceService } from "@/lib/services";
 
 export default function Home() {
-  const router = useRouter();
-  const { data: session, status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/login");
-    },
+  const { isLoading, data } = useQuery({
+    queryKey: ["players"],
+    queryFn: () => RconServiceService.list(),
+    refetchInterval: 10000,
   });
 
-  if (status === "loading") return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hello World!</h1>
+    <main className="flex min-h-screen flex-col items-center gap-y-4 p-24">
+      <div>
+        <p className="text-4xl">People on server:</p>
+        {data &&
+          data.length > 0 &&
+          data.map((name) => <div key={name}>{name}</div>)}
+      </div>
     </main>
   );
 }

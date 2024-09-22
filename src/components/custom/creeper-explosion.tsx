@@ -3,7 +3,7 @@ import * as React from "react";
 
 interface ExplosionGifProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function ExplosionGif(props: ExplosionGifProps) {
+export const ExplosionGif = (props: ExplosionGifProps) => {
   const { className } = props;
 
   return (
@@ -16,4 +16,4 @@ export default function ExplosionGif(props: ExplosionGifProps) {
       />
     </div>
   );
-}
+};

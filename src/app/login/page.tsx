@@ -8,8 +8,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import ExplosionGif from "@/components/custom/creeper-explosion";
-import CreeperScene from "@/components/custom/creeper-scene";
+import { CreeperScene, ExplosionGif } from "@/components/custom";
+import { LoginSchema, loginSchema } from "@/components/schemas/login-shema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,7 +20,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { LoginSchema, loginSchema } from "@/schemas/login-shema";
 
 export default function Login() {
   const { data: session, status } = useSession();
@@ -71,7 +70,7 @@ export default function Login() {
   }
 
   return (
-    <div className="gap-15 flex h-dvh flex-col items-center align-middle">
+    <div className="flex h-dvh flex-col items-center gap-14 align-middle">
       {explosionAnimate && (
         <ExplosionGif className="absolute aspect-auto h-dvh w-dvw" />
       )}

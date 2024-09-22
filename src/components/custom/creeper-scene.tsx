@@ -8,7 +8,7 @@ function Model({ url }: { url: string }) {
   return <primitive object={scene} scale={1} />;
 }
 
-export default function CreeperScene() {
+export const CreeperScene = () => {
   return (
     <Canvas
       style={{ height: "30vh", backgroundColor: "inherit" }}
@@ -20,4 +20,4 @@ export default function CreeperScene() {
       <Model url="/minecraft_creeper.glb" />
     </Canvas>
   );
-}
+};
