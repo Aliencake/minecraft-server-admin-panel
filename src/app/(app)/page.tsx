@@ -8,7 +8,7 @@ import { RconServiceService } from "@/lib/services";
 export default function Home() {
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.playersList],
-    queryFn: () => RconServiceService.list(),
+    queryFn: () => RconServiceService.list_online_players(),
     refetchInterval: 10000,
   });
 

@@ -7,8 +7,8 @@ class RconServiceServiceClass {
   constructor() {
     this.routeClient = routeApiClient;
   }
-  async list(): Promise<string[]> {
-    const response = await this.routeClient.get("rcon/list");
+  async list_online_players(): Promise<string[]> {
+    const response = await this.routeClient.get("rcon/players/online");
 
     return response.data;
   }
