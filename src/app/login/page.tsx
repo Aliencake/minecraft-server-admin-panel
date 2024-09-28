@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { CreeperScene, ExplosionGif } from "@/components/custom";
-import { LoginSchema, loginSchema } from "@/components/schemas/login-shema";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Routes } from "@/lib/constants";
+import { LoginSchema, loginSchema } from "@/lib/schemas/login-shema";
 
 export default function Login() {
   const { data: session, status } = useSession();
