@@ -32,3 +32,19 @@ export async function POST(req: NextRequest) {
     return new NextResponse(JSON.stringify(e), { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const body: any = await req.json();
+
+    const player = playerNameSchema.parse(body);
+
+    const response = await rcon_req(
+      `/easywhitelist remove ${player.playerName}`
+    );
+
+    return new NextResponse(JSON.stringify(response), { status: 200 });
+  } catch (e) {
+    return new NextResponse(JSON.stringify(e), { status: 500 });
+  }
+}
