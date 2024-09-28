@@ -28,6 +28,14 @@ class RconServiceServiceClass {
 
     return response.data;
   }
+
+  async whitelist_remove(name: PlayerNameSchemaType): Promise<string> {
+    const response = await this.routeClient.delete("rcon/players/whitelist", {
+      data: name,
+    });
+
+    return response.data;
+  }
 }
 
 export const RconServiceService = new RconServiceServiceClass();
